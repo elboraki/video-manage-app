@@ -37,4 +37,23 @@ router.get('/videos/:id', async (req, res) => {
 })
 
 
+router.post('/videos',async(req,res)=>{
+
+    try{
+
+        const video=new Video();
+        video.title=req.body.title;
+        video.url=req.body.url
+        video.description=req.body.description
+
+        const result=await video.save()
+        res.status(200).json(result)
+
+    }catch(err){
+        const result="Error of creating video"
+        res.status(500).json(err+':'+result)
+    }
+})
+
+
 module.exports = router;
