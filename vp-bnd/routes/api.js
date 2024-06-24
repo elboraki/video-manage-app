@@ -37,21 +37,38 @@ router.get('/videos/:id', async (req, res) => {
 })
 
 
-router.post('/videos',async(req,res)=>{
+router.post('/videos', async (req, res) => {
 
-    try{
+    try {
 
-        const video=new Video();
-        video.title=req.body.title;
-        video.url=req.body.url
-        video.description=req.body.description
+        const video = new Video();
+        video.title = req.body.title;
+        video.url = req.body.url
+        video.description = req.body.description
 
-        const result=await video.save()
+        const result = await video.save()
         res.status(200).json(result)
 
-    }catch(err){
-        const result="Error of creating video"
-        res.status(500).json(err+':'+result)
+    } catch (err) {
+        const result = "Error of creating video"
+        res.status(500).json(err + ':' + result)
+    }
+})
+
+router.put('/videos/:id', async (req, res) => {
+
+    try {
+        const id = req.params.id
+        const data = req.body
+        const updatedVideo = await Video.findByIdAndUpdate(id, data, { new: true })
+        if (!updatedVideo) {
+            return res.status(404).json('Video not found')
+        }
+        res.status(200).json(updatedVideo)
+
+    } catch (err) {
+        const result = "Error while updating video"
+        res.status(500).json(err + ':' + result)
     }
 })
 
