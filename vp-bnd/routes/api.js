@@ -74,11 +74,11 @@ router.put('/videos/:id', async (req, res) => {
 
 router.delete('/videos/:id', async (req, res) => {
     try {
-        const videoDeleted =  await Video.findByIdAndDelete(req.params.id);
+        const videoDeleted = await Video.findByIdAndDelete(req.params.id);
         if (!videoDeleted) {
             return res.status(404).json({ message: 'Video Not found' })
         }
-        res.status(200).json({ message: 'Video has been  deleted.',record:videoDeleted})
+        res.status(200).json({ message: 'Video has been  deleted.', record: videoDeleted })
     } catch (err) {
         return res.status(404).json(err)
     }
