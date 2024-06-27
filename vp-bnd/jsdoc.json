@@ -1,30 +1,60 @@
 {
-    "opts": {
-        "template": "node_modules/docdash"
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "include": ["."],
+        "exclude": ["node_modules"],
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
     },
     "plugins": [
         "plugins/markdown"
     ],
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "default": {
+            "outputSourceFiles": true
+        },
+        "path": "node_modules/docdash",
+        "theme": "default"
+    },
+    "opts": {
+        "template": "node_modules/docdash",
+        "encoding": "utf8",
+        "destination": "./docs/",
+        "recurse": true,
+        "verbose": true
+    
+    },
     "docdash": {
         "static": true,
         "sort": true,
+        "sectionOrder": [
+            "Classes",
+            "Tutorials",
+            "Modules",
+            "Externals",
+            "Events",
+            "Namespaces",
+            "Mixins",
+            "Interfaces",
+            "Global"
+        ],
+        "disqus": "musicards.io",
         "search": true,
+        "commonNav": false,
         "collapse": true,
+        "wrap": false,
         "typedefs": true,
+        "navLevel": 1,
+        "private": true,
         "removeQuotes": "none",
         "scripts": [],
-        "menu":{
-            "Github repo": {
-                "href":"https://github.com/your-github-username/pet-adoption-center-sdk",
-                "target":"_blank",
-                "class":"menu-item",
-                "id":"repository"
-            }
-        }
-    },
-    "templates": {
-        "default": {
-            "useLongnameInNav": true
-        }
-    }
+        "ShortenTypes": false,
+        "scopeInOutputPath": true,
+        "nameInOutputPath": true,
+        "versionInOutputPath": true
+  }
 }
