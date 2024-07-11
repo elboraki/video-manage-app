@@ -2,15 +2,18 @@ import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } fr
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes), 
     provideHttpClient(), 
     provideAnimations(),
-    importProvidersFrom(ButtonModule)
+    provideHttpClientTesting(),
+    importProvidersFrom(HttpClientModule,ButtonModule,TableModule)
   ]
 };
