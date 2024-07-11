@@ -20,58 +20,6 @@ app.use(cors())
 if (process.env.NODE_ENV === 'developement') {
 
     /**
-     * Route serving swagger.json file
-     * @name get/docs/swagger.json
-     * @function
-     * @memberof module:routes/docs
-     * @inner
-     * @param {string} path - Express path
-     * @param {callback} middleware - Express middleware
-     */
-    app.get('/docs/swagger.json', (req, res) => {
-        res.sendFile('swagger.json', { root: '.' });
-    });
-
-    /**
-     * Route serving ReDoc documentation
-     * @name get/docs
-     * @function
-     * @memberof module:routes/docs
-     * @inner
-     * @param {string} path - Express path
-     * @param {callback} middleware - Express middleware
-     */
-    app.get(
-        '/docs',
-        redoc({
-            title: 'API Docs',
-            specUrl: '/docs/swagger.json',
-            nonce: '',
-            redocOptions: {
-                theme: {
-                    colors: {
-                        primary: {
-                            main: '#6EC5AB'
-                        }
-                    },
-                    typography: {
-                        fontFamily: `"museo-sans", 'Helvetica Neue', Helvetica, Arial, sans-serif`,
-                        fontSize: '15px',
-                        lineHeight: '1.5',
-                        code: {
-                            code: '#87E8C7',
-                            backgroundColor: '#4D4D4E'
-                        }
-                    },
-                    menu: {
-                        backgroundColor: '#ffffff'
-                    }
-                }
-            }
-        })
-    );
-
-    /**
      * Route serving Swagger UI documentation
      * @name use/api-docs
      * @function
